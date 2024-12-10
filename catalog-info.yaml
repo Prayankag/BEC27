@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: BEC2
+  description: EC2 deletion
+spec:
+  owner: group:default/guests
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: BEC2
+  description: EC2 deletion
+  annotations:
+     backstage.io/techdocs-ref: dir:./docs
+     github.com/project-slug: prayankag/BEC27
+     github-actions: enabled
+     github.com/workflows: |
+      [
+        {
+          "workflow": "instance.yaml",
+          "label": "Start",
+          "tooltip": "click here and start the workflow process"
+        }
+      ]
+spec:
+  type: service
+  owner: group:default/guests
+  lifecycle: experimental
+  system: BEC2
+  providesApis:
+    - BEC2
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: BEC2
+  description: EC2 deletion
+spec:
+  type: internal
+  lifecycle: experimental
+  owner: group:default/guests
+  system: BEC2
+  definition: "EC2 deletion"
